@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<data version="1.37.0">
+  <trigger type="shake">
+    <useDefaultName>true</useDefaultName>
+    <name>Schütteln: Empfindlichkeit Hoch</name>
+    <enabled>false</enabled>
+    <shakeSensitivity>HIGH</shakeSensitivity>
+  </trigger>
+  <action type="sound">
+    <useDefaultName>true</useDefaultName>
+    <name>Sound: /storage/32433835-2d30-3238-3000-020000000000/temp/tatütata.mp3 als Medien</name>
+    <soundSourceType>FILE</soundSourceType>
+    <alarmName>Lautlos</alarmName>
+    <path>/storage/32433835-2d30-3238-3000-020000000000/temp/tatütata.mp3</path>
+    <audioStreamType>MUSIC</audioStreamType>
+    <startPosition></startPosition>
+    <showStopSoundNotification>false</showStopSoundNotification>
+    <waitForSoundToFinish>true</waitForSoundToFinish>
+    <requestAudioFocus>false</requestAudioFocus>
+    <audioFocusType>TRANSIENT</audioFocusType>
+  </action>
+  <flow type="flow">
+    <name>Sirene</name>
+    <group>Hackathon</group>
+    <enabled>false</enabled>
+    <executionPolicy>SKIP</executionPolicy>
+    <actioncontainer id="t1" x="35.0" y="437.5">Sound: /storage/32433835-2d30-3238-3000-020000000000/temp/tatütata.mp3 als Medien</actioncontainer>
+    <triggercontainer id="t2" x="70.0" y="52.5">
+      <trigger>Schütteln: Empfindlichkeit Hoch</trigger>
+    </triggercontainer>
+    <connection from="t2" to="t1" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+  </flow>
+</data>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<data version="1.37.0">
+  <trigger type="periodic_timer">
+    <useDefaultName>true</useDefaultName>
+    <name>Periodischer Timer: alle 10s</name>
+    <enabled>false</enabled>
+    <frequency>10000</frequency>
+    <wakeDevice>true</wakeDevice>
+    <fixedTimes>true</fixedTimes>
+    <limitTimeRange>false</limitTimeRange>
+    <weekday>Mon</weekday>
+    <weekday>Tue</weekday>
+    <weekday>Wed</weekday>
+    <weekday>Thu</weekday>
+    <weekday>Fri</weekday>
+    <weekday>Sat</weekday>
+    <weekday>Sun</weekday>
+    <hourFrom>8</hourFrom>
+    <minuteFrom>0</minuteFrom>
+    <hourTo>17</hourTo>
+    <minuteTo>0</minuteTo>
+    <allowInDeviceIdle>false</allowInDeviceIdle>
+    <likeAlarmClock>false</likeAlarmClock>
+  </trigger>
+  <action type="turn_screen_on">
+    <useDefaultName>true</useDefaultName>
+    <name>Schalte Display ein: Dunkel für 60s</name>
+    <bright>false</bright>
+    <duration>60s</duration>
+    <resetUserActivityTimer>true</resetUserActivityTimer>
+  </action>
+  <flow type="flow">
+    <name>Bildschirm an</name>
+    <group>Hackathon</group>
+    <enabled>false</enabled>
+    <executionPolicy>PARALLEL</executionPolicy>
+    <triggercontainer id="t1" x="70.0" y="52.5">
+      <trigger>Periodischer Timer: alle 10s</trigger>
+    </triggercontainer>
+    <actioncontainer id="t2" x="105.0" y="332.5">Schalte Display ein: Dunkel für 60s</actioncontainer>
+    <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+  </flow>
+</data>

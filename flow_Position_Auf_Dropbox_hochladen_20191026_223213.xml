@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<data version="1.37.0">
+  <trigger type="periodic_location_update">
+    <useDefaultName>true</useDefaultName>
+    <name>Periodischer Standort Update: gewünscht alle 2s (Hohe Genauigkeit)</name>
+    <enabled>false</enabled>
+    <provider>gms.high_accuracy</provider>
+    <frequency>2000</frequency>
+    <enforceFrequency>false</enforceFrequency>
+    <minimumAccuracyEnabled>true</minimumAccuracyEnabled>
+    <minimumAccuracy>50</minimumAccuracy>
+    <limitTimeRange>false</limitTimeRange>
+    <weekday>Mon</weekday>
+    <weekday>Tue</weekday>
+    <weekday>Wed</weekday>
+    <weekday>Thu</weekday>
+    <weekday>Fri</weekday>
+    <weekday>Sat</weekday>
+    <weekday>Sun</weekday>
+    <hourFrom>8</hourFrom>
+    <minuteFrom>0</minuteFrom>
+    <hourTo>17</hourTo>
+    <minuteTo>0</minuteTo>
+    <allowInDeviceIdle>false</allowInDeviceIdle>
+    <likeAlarmClock>false</likeAlarmClock>
+  </trigger>
+  <action type="dropbox_upload_files">
+    <useDefaultName>true</useDefaultName>
+    <name>Dropbox Dateien uploaden: /storage/emulated/0/temp/position.txt nach /Hackathon</name>
+    <sourcePathList>/storage/emulated/0/temp/position.txt</sourcePathList>
+    <dropboxPath>/Hackathon</dropboxPath>
+    <showProgress>true</showProgress>
+  </action>
+  <action type="write_to_file">
+    <useDefaultName>true</useDefaultName>
+    <name>In Datei Schreiben: {location} in /storage/emulated/0/temp/position.txt (überschreiben)</name>
+    <path>/storage/emulated/0/temp/position.txt</path>
+    <text>{location}</text>
+    <append>false</append>
+  </action>
+  <flow type="flow">
+    <name>Position Auf Dropbox hochladen</name>
+    <group>Hackathon</group>
+    <enabled>false</enabled>
+    <executionPolicy>SKIP</executionPolicy>
+    <emergencyStopCount>6000</emergencyStopCount>
+    <actioncontainer id="t1" x="35.0" y="262.5">In Datei Schreiben: {location} in /storage/emulated/0/temp/position.txt (überschreiben)</actioncontainer>
+    <actioncontainer id="t2" x="35.0" y="472.5">Dropbox Dateien uploaden: /storage/emulated/0/temp/position.txt nach /Hackathon</actioncontainer>
+    <triggercontainer id="t3" x="70.0" y="52.5">
+      <trigger>Periodischer Standort Update: gewünscht alle 2s (Hohe Genauigkeit)</trigger>
+    </triggercontainer>
+    <connection from="t1" to="t2" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+    <connection from="t3" to="t1" type="NORMAL" sourcePosition="SOUTH" targetPosition="NORTH" />
+  </flow>
+</data>
